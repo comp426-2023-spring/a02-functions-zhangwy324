@@ -18,6 +18,50 @@ if (args.h == true) {
     process.exit(0);
 }
 
+let url = 'https://api.open-meteo.com/v1/forecast?';
 
+let latitude
+let longitude
 
-console.log(timezone);
+if (args.n) {
+    latitude = args.n;
+} else if (args.s) {
+    latitude = -args.s;
+}
+
+if (args.e) {
+    longitude = args.e;
+} else if (args.w) {
+    longitude = -args.w;
+}
+
+url = url + 'latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&daily=precipitation_hours&timezone=' + timezone
+
+const response = await fetch(url);
+const data = await response.json();
+
+const precipitation_hours_data = data.daily.precipitation_hours;
+
+const days = args.d
+
+let day_str;
+
+if (days == 0) {
+    day_str = "today.";
+} else if (days > 1) {
+    day_str = "in " + days + " days.";
+} else {
+    day_str = "tomorrow.";
+}
+
+if (!days) {
+    if (precipitation_hours_data[1] > 0) {
+        console.log('It will rain ' + day_str);
+    } else {
+        console.log('It will not rain ' + day_str);
+    }
+} else if (precipitation_hours_data[days] > 0) {
+    console.log('It will rain ' + day_str);
+} else {
+    console.log('It will not rain ' + day_str);
+}
