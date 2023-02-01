@@ -5,7 +5,13 @@ import fetch from "node-fetch";
 import moment from "moment-timezone";
 
 const args = minimist(process.argv.slice(2));
-const timezone = moment.tz.guess();
+let timezone;
+if (args.t) {
+    timezone = args.t;
+} else {
+    timezone = moment.tz.guess();
+}
+
 
 if (args.h == true) {
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
@@ -40,6 +46,11 @@ url = url + 'latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&dai
 const response = await fetch(url);
 const data = await response.json();
 
+if (args.j) {
+    console.log(data);
+    process.exit(0);
+}
+
 const precipitation_hours_data = data.daily.precipitation_hours;
 
 const days = args.d
@@ -65,3 +76,4 @@ if (!days) {
 } else {
     console.log('It will not rain ' + day_str);
 }
+
