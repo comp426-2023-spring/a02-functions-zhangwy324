@@ -73,13 +73,13 @@ if (days == 0) {
 
 if (!days) {
     if (precipitation_hours_data[1] > 0) {
-        console.log('It will rain ' + day_str);
+        console.log('You might need your galoshes ' + day_str);
     } else {
-        console.log('It will not rain ' + day_str);
+        console.log('You will not need your galoshes ' + day_str);
     }
 } else if (precipitation_hours_data[days] > 0) {
-    console.log('It will rain ' + day_str);
+    console.log('You might need your galoshes ' + day_str);
 } else {
-    console.log('It will not rain ' + day_str);
+    console.log('You will not need your galoshes ' + day_str);
 }
 
