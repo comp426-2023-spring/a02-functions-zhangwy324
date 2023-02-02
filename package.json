@@ -16,13 +16,13 @@
     "url": "https://github.com/comp426-2023-spring/a02-functions-zhangwy324/issues"
   },
   "homepage": "https://github.com/comp426-2023-spring/a02-functions-zhangwy324#readme",
-  "bin": {
-    "galosh.js": "./cli.js"
-  },
-  "type": "module",
   "dependencies": {
     "minimist": "^1.2.7",
     "moment-timezone": "^0.5.40",
     "node-fetch": "^3.3.0"
-  }
+  },
+  "bin": {
+    "galosh.js": "./cli.js"
+  },
+  "type": "module"
 }
