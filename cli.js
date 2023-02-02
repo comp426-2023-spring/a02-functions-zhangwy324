@@ -33,12 +33,18 @@ if (args.n) {
     latitude = args.n;
 } else if (args.s) {
     latitude = -args.s;
+} else {
+    console.log("Latitude must be in range");
+    process.exit(1);
 }
 
 if (args.e) {
     longitude = args.e;
 } else if (args.w) {
     longitude = -args.w;
+} else {
+    console.log("Longitude must be in range");
+    process.exit(1);
 }
 
 url = url + 'latitude=' + `${latitude}` + '&longitude=' + `${longitude}` + '&daily=precipitation_hours&timezone=' + timezone
